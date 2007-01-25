@@ -27,8 +27,13 @@ public class Connection {
 
 	private String host;
 
-	private int port = 4444;
+	private int port;
 
+	public Connection(String host, int port) {
+		this.host = host;
+		this.port = port;
+	}
+	
 	/**
 	 * Open connection.
 	 * 
