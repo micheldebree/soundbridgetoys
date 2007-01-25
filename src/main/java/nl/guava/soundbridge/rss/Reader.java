@@ -48,20 +48,31 @@ public class Reader {
 
 	public static void main(String[] args) {
 		
+		if (args.length != 1) {
+			System.err.println("USAGE: Reader <hostname|ip address>");
+			return;
+		}
+		
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(
 		        new String[] {"soundbridge.xml", "rss.xml"});
     	
 		BeanFactory factory = (BeanFactory) appContext;
 		
     	Reader reader = (Reader) factory.getBean("rssreader");
-		
+    	
 		try {
+			reader.getSoundBridge().setHost(args[0]);
+			reader.getSoundBridge().connect();
 			reader.start();
 		} catch (ConnectionException e) {
 			LOG.fatal(e);
 		}
 	}
 
+	/**
+	 * Start showing all feeds.
+	 * @throws ConnectionException
+	 */
 	public void start() throws ConnectionException {
 		for (Feed feed : getFeeds()) {
 			try {
@@ -72,6 +83,12 @@ public class Reader {
 		}
 	}
 
+	/**
+	 * Show one feed.
+	 * @param feed The feed to show.
+	 * @throws SyndicationException
+	 * @throws ConnectionException
+	 */
 	private void showFeed(Feed feed) throws SyndicationException,
 			ConnectionException {
 		SyndFeedInput input = new SyndFeedInput();
@@ -90,6 +107,7 @@ public class Reader {
 
 		List<SyndEntryImpl> entries = rssFeed.getEntries();
 
+		
 		SketchMode sketch = soundBridge.getSketchMode();
 
 		sketch.setFont(font);
