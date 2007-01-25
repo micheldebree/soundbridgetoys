@@ -14,3 +14,4 @@ Run the class nl.guava.soundbridge.rss.Reader with your soundbridge hostname or 
 java -cp soundbridgetoys.jar nl.guava.soundbridge.rss.Reader 192.168.1.101
 }}}
 
+To change the feeds that are displayed, edit the rss.xml configuration file.
