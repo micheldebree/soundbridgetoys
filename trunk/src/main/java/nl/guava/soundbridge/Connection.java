@@ -1,5 +1,6 @@
 package nl.guava.soundbridge;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -15,13 +16,15 @@ import org.apache.log4j.Logger;
  * @author michel
  * 
  */
-public class Connection {
+public abstract class Connection {
 
-	private final static Logger LOG = Logger.getLogger(Connection.class);
+	protected final static Logger LOG = Logger.getLogger(Connection.class);
 
 	private Socket socket;
 
-	private Reader reader;
+	protected Reader reader;
+
+	private BufferedReader bufferedReader;
 
 	private PrintWriter writer;
 
@@ -33,7 +36,7 @@ public class Connection {
 		this.host = host;
 		this.port = port;
 	}
-	
+
 	/**
 	 * Open connection.
 	 * 
@@ -61,6 +64,7 @@ public class Connection {
 		// open reader
 		try {
 			reader = new InputStreamReader(socket.getInputStream());
+			bufferedReader = new BufferedReader(reader);
 		} catch (IOException e) {
 			throw new ConnectionException("Cannot read from socket.", e);
 		}
@@ -105,60 +109,19 @@ public class Connection {
 		return (socket != null) && socket.isConnected();
 	}
 
-	/**
-	 * Read data from socket.
-	 * 
-	 * @return The text that is read.
-	 * @throws ConnectionException
-	 */
-	private String read() throws ConnectionException {
-
-		StringBuffer result = new StringBuffer();
-
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			while (reader.ready()) {
-				result.append((char) reader.read());
-			}
-		} catch (IOException e) {
-			throw new ConnectionException("Read failed.", e);
-		}
-
-		LOG.debug("Reading: " + result.toString());
-
-		return result.toString();
-
+	public void writeLine(String text) {
+		LOG.debug("Writing: " + text);
+		writer.println(text);
 	}
 
-	private void waitForResponse() throws ConnectionException {
-		LOG.debug("Waiting for response...");
+	public String readLine() throws ConnectionException {
 		try {
-			while (!reader.ready()) {
-				// TODO: timeout mechanism
-			}
+			String result = bufferedReader.readLine();
+			LOG.debug("Reading: " + result);
+			return result;
 		} catch (IOException e) {
 			throw new ConnectionException(e);
 		}
-		read();
-	}
-
-	/**
-	 * Write a command to the socket. Also waits for a response. TODO: there is
-	 * no way to tell wether the command was succesful.
-	 * 
-	 * @param text
-	 *            The command text.
-	 * @throws ConnectionException
-	 */
-	public void writeCommand(String text) throws ConnectionException {
-		LOG.debug("Writing: " + text);
-		writer.println(text);
-		waitForResponse();
 	}
 
 	public String getHost() {

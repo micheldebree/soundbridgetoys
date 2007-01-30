@@ -16,8 +16,8 @@ public class HelloWorld
     	
     	Soundbridge sb = (Soundbridge) factory.getBean("soundbridge");
     	try {
-			sb.getSketchMode().marquee("Hello World!");
-			sb.getSketchMode().close();
+			sb.getSimpleConnection().getSketchMode().marquee("Hello World!");
+			sb.getSimpleConnection().getSketchMode().close();
 		} catch (ConnectionException e) {
 			e.printStackTrace();
 		}

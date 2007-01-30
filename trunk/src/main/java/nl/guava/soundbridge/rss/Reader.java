@@ -23,8 +23,9 @@ import com.sun.syndication.io.XmlReader;
 
 /**
  * RSS Reader that displays feeds on the soundbridge.
+ * 
  * @author michel
- *
+ * 
  */
 public class Reader {
 
@@ -47,22 +48,21 @@ public class Reader {
 	}
 
 	public static void main(String[] args) {
-		
+
 		if (args.length != 1) {
 			System.err.println("USAGE: Reader <hostname|ip address>");
 			return;
 		}
-		
-		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(
-		        new String[] {"soundbridge.xml", "rss.xml"});
-    	
+
+		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(new String[] {
+				"soundbridge.xml", "rss.xml" });
+
 		BeanFactory factory = (BeanFactory) appContext;
-		
-    	Reader reader = (Reader) factory.getBean("rssreader");
-    	
+
+		Reader reader = (Reader) factory.getBean("rssreader");
+
 		try {
 			reader.getSoundBridge().setHost(args[0]);
-			reader.getSoundBridge().connect();
 			reader.start();
 		} catch (ConnectionException e) {
 			LOG.fatal(e);
@@ -71,6 +71,7 @@ public class Reader {
 
 	/**
 	 * Start showing all feeds.
+	 * 
 	 * @throws ConnectionException
 	 */
 	public void start() throws ConnectionException {
@@ -85,12 +86,13 @@ public class Reader {
 
 	/**
 	 * Show one feed.
-	 * @param feed The feed to show.
+	 * 
+	 * @param feed
+	 *            The feed to show.
 	 * @throws SyndicationException
 	 * @throws ConnectionException
 	 */
-	private void showFeed(Feed feed) throws SyndicationException,
-			ConnectionException {
+	private void showFeed(Feed feed) throws SyndicationException, ConnectionException {
 		SyndFeedInput input = new SyndFeedInput();
 		SyndFeed rssFeed;
 		try {
@@ -107,19 +109,17 @@ public class Reader {
 
 		List<SyndEntryImpl> entries = rssFeed.getEntries();
 
-		
-		SketchMode sketch = soundBridge.getSketchMode();
+		SketchMode sketch = soundBridge.getSimpleConnection().getSketchMode();
 
 		sketch.setFont(font);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat(TIMEFORMAT);
 
-		
 		for (SyndEntryImpl entry : entries) {
 
 			Date entryDate = entry.getPublishedDate();
-			
-			StringBuilder text = new StringBuilder();	
+
+			StringBuilder text = new StringBuilder();
 			if (entryDate != null) {
 				text.append('[' + dateFormat.format(entryDate) + "] ");
 			}
