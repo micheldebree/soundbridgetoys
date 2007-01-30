@@ -24,9 +24,9 @@ public class SketchMode {
 	public final static int FONT_SANSSERIF16 = 14;
 	
 	
-	private Connection connection;
+	private SimpleConnection connection;
 	
-	public SketchMode(Connection connection) throws ConnectionException {
+	public SketchMode(SimpleConnection connection) throws ConnectionException {
 		this.connection = connection;
 		connection.writeCommand(CMD_OPEN);
 	}
