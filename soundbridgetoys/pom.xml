@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>nl.guava.soundbridge</groupId>
+	<artifactId>soundbridgetoys</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>soundbridgetoys</name>
+	<url>http://code.google.com/p/soundbridgetoys</url>
+
+	<developers>
+
+		<developer>
+
+			<id>mbr</id>
+
+			<name>Michel de Bree</name>
+
+			<email>m.debree@gmail.com</email>
+
+		</developer>
+		<developer>
+
+			<id>sbn</id>
+
+			<name>Sébastien Blanc</name>
+
+			<email>scm.blanc@gmail.com</email>
+
+		</developer>
+
+	</developers>
+	<modules>
+		<module>soundbridge-api</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<scm>
+		<connection>
+			scm:svn:http://soundbridgetoys.googlecode.com/svn/trunk
+		</connection>
+		<url>http://soundbridgetoys.googlecode.com/svn</url>
+	</scm>
+	<issueManagement>
+		<system>Google code</system>
+		<url>http://code.google.com/p/soundbridgetoys/issues/list</url>
+	</issueManagement>
+</project>

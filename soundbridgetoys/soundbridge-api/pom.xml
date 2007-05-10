@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.guava.soundbridge</groupId>
+    <artifactId>soundbridge-api</artifactId>
+    <name>soundbridge-api</name>
+    <description>A java api for the soundbridge</description>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <url>http://code.google.com/p/soundbridgetoys</url>
+    <developers>
+        <developer>
+            <id>mbr</id>
+            <name>Michel de Bree</name>
+            <email>m.debree@gmail.com</email>
+        </developer>
+    </developers>
+    <parent>
+        <groupId>nl.guava.soundbridge</groupId>
+        <artifactId>soundbridgetoys</artifactId>
+        <version>1.0-SNAPSHOT</version>
+  </parent>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.13</version>
+        </dependency>
+    </dependencies>
+    <build>
+       <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <scm>
+        <connection>scm:svn:http://soundbridgetoys.googlecode.com/svn/trunk</connection>
+        <url>http://soundbridgetoys.googlecode.com/svn</url>
+    </scm>
+    <issueManagement>
+        <system>Google code</system>
+        <url>http://code.google.com/p/soundbridgetoys/issues/list</url>
+    </issueManagement>
+</project>
