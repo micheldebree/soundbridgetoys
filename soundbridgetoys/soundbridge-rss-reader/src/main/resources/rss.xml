@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+		"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean name="rssreader" class="nl.guava.soundbridge.rss.Reader">
+        <property name="soundBridge">
+            <ref bean="soundbridge" />
+        </property>
+        <property name="feeds">
+            <list>
+                <bean class="nl.guava.soundbridge.rss.Feed">
+                    <property name="url" value="http://feeds.feedburner.com/filmtotaal/ajvt" />
+                </bean>
+                <bean class="nl.guava.soundbridge.rss.Feed">
+                    <property name="url" value="http://nu.nl/deeplink_rss2/index.jsp?r=Algemeen" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

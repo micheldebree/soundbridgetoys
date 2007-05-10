@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+		"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean name="soundbridge" class="nl.guava.soundbridge.Soundbridge">
+        <property name="host" value="192.168.1.101" />
+    </bean>
+
+</beans>

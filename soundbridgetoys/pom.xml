@@ -33,6 +33,7 @@
 	</developers>
 	<modules>
 		<module>soundbridge-api</module>
+		<module>soundbridge-rss-reader</module>
 	</modules>
 	<dependencies>
 		<dependency>
