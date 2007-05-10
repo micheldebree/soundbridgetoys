@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>nl.guava.soundbridge</groupId>
+    <groupId>nl.guava.soundbridgetoys</groupId>
     <artifactId>soundbridge-api</artifactId>
     <name>soundbridge-api</name>
     <description>A java api for the soundbridge</description>
@@ -16,7 +16,7 @@
         </developer>
     </developers>
     <parent>
-        <groupId>nl.guava.soundbridge</groupId>
+        <groupId>nl.guava</groupId>
         <artifactId>soundbridgetoys</artifactId>
         <version>1.0-SNAPSHOT</version>
   </parent>
